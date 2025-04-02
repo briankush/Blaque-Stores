@@ -1,0 +1,287 @@
+body {
+    font-family:serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e8d03307;
+    color: #000000;
+    line-height: 1.6;
+    /*background-image: url(Background.webp);*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+}
+
+a {
+    color: #fcfcfc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #000000;
+    margin: 20px 0;
+    color: black;
+}
+
+
+header {
+    background-color: #ffffff; 
+    color: #000000; 
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #FFA500; 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #000000e1; 
+}
+
+
+header nav {
+    background-color: #ffffff; 
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px; 
+}
+
+header nav a {
+    margin: 0 15px;
+    font-size: 1.2em;
+    color: #000000; 
+    font-weight: bold; 
+}
+
+header nav a:hover {
+    color: #FFA500; 
+    text-decoration: none; 
+}
+
+
+
+#about {
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    
+}
+
+#about h1 {
+    font-size: 2em;
+    color: #FFA500;
+    text-align: center;
+}
+
+#about h4 {
+    color: #FFA500;
+}
+
+#about ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+#about ul li {
+    margin-bottom: 10px;
+}
+p {
+    font-family: sans-serif;
+}
+
+
+#Products {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+#Products h2 {
+    font-size: 2em;
+    color: #FFA500;
+    text-align: center;
+}
+
+#Products ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+
+#Products ol li {
+    margin-bottom: 10px;
+}
+
+
+.image-container {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    animation: scroll 10s linear infinite;
+}
+
+img {
+    border: 2px solid #FFA500;
+    margin: 10px;
+    border-radius: 10px;
+    flex: 0 0 auto;
+}
+
+img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+@keyframes scrollImages {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+th {
+    background-color: #FFA500;
+    color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #fff8e6;
+    transition: background-color 0.3s ease;
+}
+
+td.price {
+    color: #000000;
+    font-weight: bold;
+}
+
+
+h2 {
+    text-align: center;
+    margin: 30px 0 15px;
+    color: #FFA500;
+    font-size: 1.8em;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #FFA500;
+}
+
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+}
+
+
+.image-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    animation: none;
+}
+
+.image-container img {
+    max-width: 200px;
+    height: auto;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 10px; 
+}
+
+footer h3 {
+    color: #FFA500;
+    margin: 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header nav a {
+        font-size: 1em;
+    }
+
+    #about h1, #Products h2 {
+        font-size: 1.5em;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
