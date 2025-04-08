@@ -1,140 +1,81 @@
-// Responsive Navigation
-function setupResponsiveNav() {
-    const nav = document.querySelector('header nav');
-    const hamburger = document.createElement('div');
-    hamburger.className = 'hamburger';
-    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-    document.querySelector('header').appendChild(hamburger);
-
-    function toggleNav() {
-        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+// Show/hide back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+    } else {
+        backToTop.classList.remove('show');
     }
-
-    hamburger.addEventListener('click', toggleNav);
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            nav.style.display = 'flex';
-        } else {
-            nav.style.display = 'none';
-        }
-    });
-}
-
-// Responsive Image Loading
-function handleResponsiveImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    images.forEach(img => {
-        const src = window.innerWidth >= 768 ? 
-            img.dataset.srcDesktop : 
-            img.dataset.srcMobile;
-        img.src = src;
-    });
-}
-
-// Dynamic Content Adjustment
-function adjustContentLayout() {
-    const containers = document.querySelectorAll('.content-container');
-    containers.forEach(container => {
-        if (window.innerWidth < 768) {
-            container.classList.add('mobile-view');
-        } else {
-            container.classList.remove('mobile-view');
-        }
-    });
-}
-
-// Mobile-Friendly Table Handling
-function makeTablesResponsive() {
-    const tables = document.querySelectorAll('table');
-    tables.forEach(table => {
-        if (window.innerWidth < 600) {
-            table.classList.add('responsive-table');
-        } else {
-            table.classList.remove('responsive-table');
-        }
-    });
-}
-
-// Form Validation Enhancement
-function enhanceFormValidation() {
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('input', (e) => {
-            const input = e.target;
-            if (input.validity.valid) {
-                input.classList.remove('invalid');
-                input.classList.add('valid');
-            } else {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-            }
-        });
-    });
-}
-
-// Smooth Scroll Behavior
-function enableSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-}
-
-// Mobile Viewport Height Fix
-function adjustViewportHeight() {
-    const setHeight = () => {
-        document.documentElement.style.setProperty(
-            '--vh', 
-            `${window.innerHeight * 0.01}px`
-        );
-    };
-    window.addEventListener('resize', setHeight);
-    setHeight();
-}
-
-// Back to Top Button
-function addBackToTop() {
-    const button = document.createElement('button');
-    button.className = 'back-to-top';
-    button.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    document.body.appendChild(button);
-
-    window.addEventListener('scroll', () => {
-        button.style.display = window.pageYOffset > 500 ? 'block' : 'none';
-    });
-
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Initialize all functions
-document.addEventListener('DOMContentLoaded', () => {
-    setupResponsiveNav();
-    handleResponsiveImages();
-    adjustContentLayout();
-    makeTablesResponsive();
-    enhanceFormValidation();
-    enableSmoothScroll();
-    adjustViewportHeight();
-    addBackToTop();
 });
 
-// Debounced resize handler
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        handleResponsiveImages();
-        adjustContentLayout();
-        makeTablesResponsive();
-    }, 250);
+// Smooth scroll to top
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Purchase functionality
+let selectedProduct = null;
+
+function showPurchaseModal(productName, price) {
+    selectedProduct = { productName, price };
+    document.getElementById('productDetails').textContent = 
+        `Confirm purchase of: ${productName} at KSH ${price}`;
+    document.getElementById('purchaseModal').style.display = 'block';
+}
+
+function processPayment() {
+    const phone = document.getElementById('phone').value;
+    const statusDiv = document.getElementById('paymentStatus');
+    
+    if (!/^07\d{8}$/.test(phone)) {
+        statusDiv.innerHTML = '<p style="color: red">Invalid phone number format</p>';
+        return;
+    }
+
+    // Simulated payment processing
+    statusDiv.innerHTML = `
+        <p style="color: green">
+            Initiating M-Pesa payment to ${phone} for KSH ${selectedProduct.price}...
+            <br>(This is a simulation)
+        </p>
+    `;
+
+    // Reset after 3 seconds
+    setTimeout(() => {
+        document.getElementById('purchaseModal').style.display = 'none';
+        statusDiv.innerHTML = '';
+        document.getElementById('paymentForm').reset();
+    }, 3000);
+}
+
+// Modal close functionality
+document.querySelector('.close').onclick = function() {
+    document.getElementById('purchaseModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('purchaseModal')) {
+        document.getElementById('purchaseModal').style.display = 'none';
+    }
+}
+function closeModal() {
+    document.getElementById('purchaseModal').style.display = 'none';
+    document.getElementById('paymentForm').reset();
+    document.getElementById('paymentStatus').innerHTML = '';
+}
+
+// Close modal when clicking X
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.close').addEventListener('click', closeModal);
+});
+
+// Close when clicking outside modal
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('purchaseModal');
+    if (event.target === modal) {
+        closeModal();
+    }
 });
