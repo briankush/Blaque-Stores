@@ -52,6 +52,10 @@ header nav a {
     font-size: 1.2em;
     color: #000000;
     font-weight: bold;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header nav a:hover {
@@ -60,7 +64,7 @@ header nav a:hover {
 }
 /* Navigation Icon Styling */
 header nav a i {
-    margin-right: 8px;
+    margin-right: 6px;
     color: inherit;
     transition: color 0.3s ease;
     font-size: 1.1em;
@@ -68,6 +72,8 @@ header nav a i {
 
 header nav a:hover i {
     color: #FFA500;
+    color: #000000;
+    transform: translateY(-2px);
 }
 
 /* Optional: Add animation to icons */
@@ -79,6 +85,25 @@ header nav a i {
 header nav a:hover i {
     transform: translateY(-2px);
 }
+header nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+/* Slide‑in underline effect */
+header nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #FFA500;       /* orange accent */
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+
+
+
 
 #about {
     padding: 20px;
