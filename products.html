@@ -12,12 +12,17 @@
         <header>
             <h1>Blaque Stores Products</h1>
             <nav>
-                <a href="index.html">
-                    <i class="fas fa-home"></i> Home
-                </a> 
-                <a href="contact.html">
-                    <i class="fas fa-envelope"></i> Contact
-                </a>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="contact.html">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </div>
             </nav>
         </header>
 
@@ -234,36 +239,6 @@
         <div id="paymentStatus"></div>
     </div>
 </div>
-```html
-<!-- Add a CSS class to the image containers for better styling -->
-<div class="image-container grid-container">
-    <!-- Add alt text to the images for better accessibility -->
-    <img src="51VeOIMxm1S.jpg" alt="Football equipment" width="300" height="300">
-    <img src="Football 1.webp" alt="Football equipment" width="300" height="300">
-    <img src="Football 2.webp" alt="Football equipment" width="300" height="300">
-    <img src="Football 3.webp" alt="Football equipment" width="300" height="300">
-    <img src="Football 4.webp" alt="Football equipment" width="300" height="300">
-</div>
-
-<!-- Add a CSS class to the tables for better styling -->
-<table class="product-table">
-    <thead>
-        <tr>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Price (KSH)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Add a CSS class to the table rows for better styling -->
-        <tr class="product-row" onclick="showPurchaseModal('Adidas League Football', '6,500')">
-            <td>Adidas League Football</td>
-            <td>Official match ball (Size 5)</td>
-            <td class="price">6,500</td>
-        </tr>
-        <!-- ... -->
-    </tbody>
-</table>
 
 <!-- Add a CSS class to the modal for better styling -->
 <div id="purchaseModal" class="modal modal-dialog">
@@ -287,7 +262,7 @@
 <a href="#" class="back-to-top btn btn-primary" onclick="scrollToTop()">
     <i class="fas fa-arrow-up"></i>
 </a>
-```
+
 <a href="#" class="back-to-top" onclick="scrollToTop()">
     <i class="fas fa-arrow-up"></i>
 </a>

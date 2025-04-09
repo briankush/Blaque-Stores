@@ -79,3 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ensure modal starts hidden
   closeModal();
 });
+
+// Mobile Menu Toggle
+function toggleMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('active');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.querySelector('.hamburger');
+  
+  if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+      navLinks.classList.remove('active');
+  }
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+  });
+});
